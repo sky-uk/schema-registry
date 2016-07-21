@@ -1108,7 +1108,7 @@ public class AvroData {
           for (org.apache.avro.Schema memberSchema : schema.getTypes()) {
             String fieldName = unionMemberFieldName(memberSchema);
             if (fieldNames.contains(fieldName)) {
-              throw new DataException("Multiple union schemas map to the Connect union field name");
+              continue;
             }
             fieldNames.add(fieldName);
             builder.field(fieldName, toConnectSchema(memberSchema, true, null, null));

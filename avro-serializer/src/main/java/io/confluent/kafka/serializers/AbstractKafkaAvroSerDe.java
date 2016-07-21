@@ -61,7 +61,7 @@ public abstract class AbstractKafkaAvroSerDe {
     if (isKey) {
       return topic + "-key";
     } else {
-      return topic + "-value";
+      return topic;
     }
   }
 
@@ -70,7 +70,7 @@ public abstract class AbstractKafkaAvroSerDe {
    */
   protected static String getOldSubjectName(Object value) {
     if (value instanceof GenericContainer) {
-      return ((GenericContainer) value).getSchema().getName() + "-value";
+      return ((GenericContainer) value).getSchema().getName();
     } else {
       throw new SerializationException("Primitive types are not supported yet");
     }
