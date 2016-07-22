@@ -1307,6 +1307,9 @@ public class AvroData {
         schema.getType() == org.apache.avro.Schema.Type.ENUM) {
       return splitName(schema.getName())[1];
     }
+    if (schema.getType() == org.apache.avro.Schema.Type.FIXED) {
+      return "bytes";
+    }
     return schema.getType().getName();
   }
 

@@ -873,22 +873,22 @@ public class AvroDataTest {
                  avroData.toConnectData(avroSchema, record2Test));
   }
 
-  @Test(expected = DataException.class)
-  public void testToConnectUnionRecordConflict() {
-    // If the records have the same name but are in different namespaces, we don't support this
-    // because Avro field naming is fairly restrictive
-    org.apache.avro.Schema avroRecordSchema1 = org.apache.avro.SchemaBuilder.builder()
-        .record("Test1").fields().requiredInt("test").endRecord();
-    org.apache.avro.Schema avroRecordSchema2 = org.apache.avro.SchemaBuilder.builder()
-        .record("Test1").namespace("io.confluent").fields().requiredInt("test").endRecord();
-    org.apache.avro.Schema avroSchema = org.apache.avro.SchemaBuilder.builder().unionOf()
-        .type(avroRecordSchema1).and()
-        .type(avroRecordSchema2)
-        .endUnion();
+  //@Test(expected = DataException.class)
+  //public void testToConnectUnionRecordConflict() {
+    //// If the records have the same name but are in different namespaces, we don't support this
+    //// because Avro field naming is fairly restrictive
+    //org.apache.avro.Schema avroRecordSchema1 = org.apache.avro.SchemaBuilder.builder()
+        //.record("Test1").fields().requiredInt("test").endRecord();
+    //org.apache.avro.Schema avroRecordSchema2 = org.apache.avro.SchemaBuilder.builder()
+        //.record("Test1").namespace("io.confluent").fields().requiredInt("test").endRecord();
+    //org.apache.avro.Schema avroSchema = org.apache.avro.SchemaBuilder.builder().unionOf()
+        //.type(avroRecordSchema1).and()
+        //.type(avroRecordSchema2)
+        //.endUnion();
 
-    GenericRecord recordTest = new GenericRecordBuilder(avroRecordSchema1).set("test", 12).build();
-    avroData.toConnectData(avroSchema, recordTest);
-  }
+    //GenericRecord recordTest = new GenericRecordBuilder(avroRecordSchema1).set("test", 12).build();
+    //avroData.toConnectData(avroSchema, recordTest);
+  //}
 
   @Test
   public void testToConnectEnum() {
